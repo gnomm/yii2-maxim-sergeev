@@ -3,7 +3,7 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'dsn' => 'mysql:host=localhost;dbname=yii2-task',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
@@ -16,5 +16,9 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+//        'request' => [
+//            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+//            'cookieValidationKey' => '',
+//        ],
     ],
 ];
