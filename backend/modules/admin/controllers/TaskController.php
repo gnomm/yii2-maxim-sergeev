@@ -71,11 +71,9 @@ class TaskController extends Controller
         $model = new tasks();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->image = UploadedFile::getInstance($model, 'image');
+//            $model->image = UploadedFile::getInstance($model, 'image');
             $model->save();
-            $model->upload();
-
-
+//            $model->upload();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -102,7 +100,7 @@ class TaskController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $users = ArrayHelper::map(Users::find()->all(), 'id', 'login');
+        $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
         return $this->render('update', [
             'model' => $model,
             'users' => $users

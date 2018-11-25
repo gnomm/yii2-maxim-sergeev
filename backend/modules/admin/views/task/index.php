@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id' => [
                 'label' => 'Name',
                 'value' => function ($data) {
-                    return $data->user->login;
+                    return $data->user->username;
                 }
             ],
             ['class' => 'yii\grid\ActionColumn'],

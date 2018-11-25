@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id' =>
                 [
                     'label' => 'Name',
-                    'value' => $model->user->login
+                    'value' => $model->user->username
                 ],
             'created_at',
             'updated_at'
