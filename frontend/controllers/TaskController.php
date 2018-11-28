@@ -6,7 +6,6 @@ use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
 use Yii;
 //use app\behaviors\MyBehaviors;
-use common\models\tables\Task;
 use common\models\tables\Tasks;
 use common\models\tables\Users;
 //use app\models\Test;
@@ -102,6 +101,18 @@ class TaskController extends Controller
 
     public function actionTest()
     {
+var_dump(Yii::$app->user->identity->username);
+//$user = User::findIdentity(Yii::$app->session['__id']);
+//var_dump($user);
+//        var_dump(User::findByUsername($user));
+//        var_dump(Yii::$app->session['__id']);
+//        var_dump($_SESSION);
+
+//        $user = new Users();
+//        $user->username = 'user3';
+//        $user->password_hash = 'qwerty';
+//        $user->email = 'tets@test.ru3';
+//        $user->save();
 
 //        $dateDeadline = Tasks::find()
 ////            ->where('date')
