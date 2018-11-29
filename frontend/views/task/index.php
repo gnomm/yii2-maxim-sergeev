@@ -52,11 +52,5 @@ use yii\widgets\ActiveForm;
             'template' => '{buttons} {view} {update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка
 
         ],
-
-
-
-//        'chat' => 'btn'
-
-
     ],
 ]) ?>
