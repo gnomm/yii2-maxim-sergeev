@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
+use common\models\tables\Chat;
 use Yii;
 //use app\behaviors\MyBehaviors;
 use common\models\tables\Tasks;
@@ -101,7 +102,18 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-var_dump(Yii::$app->user->identity->username);
+        Chat::addChat();
+
+
+//        var_dump(Yii::$app->getDb());
+//        $test = (Yii::$app->session['__id']);
+
+//var_dump(Yii::$app->user->identity->username);
+//        $chat = new Chat();
+//        $chat->user_id = 2;
+//        $chat->task_id = 1;
+//        $chat->message = 'test';
+//        $chat->save();
 //$user = User::findIdentity(Yii::$app->session['__id']);
 //var_dump($user);
 //        var_dump(User::findByUsername($user));

@@ -19,11 +19,9 @@ use yii\base\Model;
  * @property string $description
  * @property string $date
  * @property int $user_id
-
  * @property Users $user
- *  @var $image UploadedFile
+ * @var $image UploadedFile
  * */
-
 class Tasks extends \yii\db\ActiveRecord
 {
 
@@ -66,6 +64,7 @@ class Tasks extends \yii\db\ActiveRecord
             [['image'], 'file', 'extensions' => 'jpg, png'],
             [['date'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>='],
 //            [['date'], 'compare', 'compareValue' => new Expression('NOW()'), 'operator' => '>='],
+
 
         ];
     }

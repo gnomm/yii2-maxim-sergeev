@@ -6,9 +6,7 @@ use Yii;
 use yii\web\Controller;
 use common\models\tables\Chat;
 use common\models\search\ChatSearch;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
+
 
 class ChatController extends Controller
 {

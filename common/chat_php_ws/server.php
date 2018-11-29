@@ -1,15 +1,14 @@
 <?php
 
 namespace common\chat_php_ws;
-//namespace app;
 
-
-require "../../vendor/autoload.php";
-
-
+use common\models\tables\Chat;
+use Yii;
 use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
+
+require "../../vendor/autoload.php";
 
 
 $server = IoServer::factory(

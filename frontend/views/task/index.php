@@ -39,7 +39,24 @@ use yii\widgets\ActiveForm;
 //                return Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']);
             }
         ],
+        [
+            'label' => 'Chat',
+            'format' => 'raw',
+            'value' => function ($data) {
+                $url = "http://front.task.local/chat/";
+                return Html::a('Перейти', $url, ['title' => 'Перейти']);
+            }
+        ],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{buttons} {view} {update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка
 
-        ['class' => 'yii\grid\ActionColumn'],
+        ],
+
+
+
+//        'chat' => 'btn'
+
+
     ],
 ]) ?>

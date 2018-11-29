@@ -4,6 +4,16 @@ namespace common\models\tables;
 
 use common\models\User;
 use Yii;
+use Ratchet\ConnectionInterface;
+use Ratchet\MessageComponentInterface;
+
+
+//require(__DIR__ . '../../../vendor/yiisoft/yii2/Yii.php');
+
+//require __DIR__ . '/../../../vendor/autoload.php';
+//require __DIR__ . '/../../../vendor/yiisoft/yii2/Yii.php';
+//require __DIR__ . '/../../../common/config/bootstrap.php';
+//require __DIR__ . '/../../config/bootstrap.php';
 
 /**
  * This is the model class for table "chat".
@@ -16,7 +26,7 @@ use Yii;
  * @property Tasks $task
  * @property User $user
  */
-class Chat extends \yii\db\ActiveRecord
+class Chat extends \yii\db\ActiveRecord implements MessageComponentInterface
 {
     /**
      * {@inheritdoc}
@@ -67,4 +77,70 @@ class Chat extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+
+    protected $clients;
+    protected $user;
+
+    /**
+     * Chat constructor.
+     */
+    public function __construct()
+    {
+        $this->clients = new \SplObjectStorage();
+    }
+
+
+    function onOpen(ConnectionInterface $conn)
+    {
+        $this->clients->attach($conn);
+        echo "New connection: {$conn->resourceId}\n";
+    }
+
+
+    function onMessage(ConnectionInterface $from, $msg)
+    {
+//        $user = Yii::$app->user->identity->username;
+
+//        $test = Yii::$app->session['__id'];
+//
+//        echo "message {$msg} from {$test} \n";
+//        Chat::addChat($msg);
+
+        echo "message {$msg} from {$from->resourceId} \n";
+
+
+        foreach ($this->clients as $client) {
+            $client->send($msg);
+
+        }
+    }
+
+
+    function onClose(ConnectionInterface $conn)
+    {
+        $this->clients->detach($conn);
+        echo "user {$conn->resourceId} disconnect \n";
+    }
+
+    function onError(ConnectionInterface $conn, \Exception $e)
+    {
+        $conn->close();
+        echo "conn {$conn->resourceId} closed with error \n";
+    }
+
+
+
+    public static function addChat() {
+
+//var_dump(Yii::$app->session['__id']);
+
+//        $chat = new Chat();
+//        $chat->user_id = Yii::$app->session['__id'];
+//        $chat->task_id = 1;
+//        $chat->message = $message;
+//        $chat->save();
+    }
+
+
 }

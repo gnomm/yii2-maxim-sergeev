@@ -2,6 +2,7 @@ if (!window.WebSocket) {
     alert("Ваш браузер не поддерживает цеб-сокеты");
 }
 
+// var webSocket = new WebSocket("ws://front.task.local/chat:8080");
 var webSocket = new WebSocket("ws://front.task.local:8080");
 
 webSocket.onmessage = function (event) {

@@ -6,7 +6,8 @@
     "type": "project",
     "license": "BSD-3-Clause",
     "autoload" : {
-        "psr-4": {"common\\":  "common"}
+        "psr-4": {
+          "common\\":  "common"}
     },
     "support": {
         "issues": "https://github.com/yiisoft/yii2/issues?state=open",
