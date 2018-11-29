@@ -25,7 +25,6 @@ class UsersTest extends \Codeception\Test\Unit
 //        $this->assertTrue($user->save(), 'model ti saves');
         $this->assertTrue($user->save(), 'Что-то пошло не так');
 
-
     }
 
 //    public function testValidateWrong()
