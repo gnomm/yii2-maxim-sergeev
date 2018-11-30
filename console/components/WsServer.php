@@ -2,35 +2,51 @@
 
 namespace console\components;
 
+use common\models\tables\Chat;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 
 class WsServer implements MessageComponentInterface
 {
-    protected $clients;
+    protected $clients = [
 
-    /**
-     * Chat constructor.
-     */
-    public function __construct()
-    {
-        $this->clients = new \SplObjectStorage();
-    }
+    ];
+
+//    /**
+//     * Chat constructor.
+//     */
+//    public function __construct()
+//    {
+//        $this->clients = new \SplObjectStorage();
+//    }
 
 
     function onOpen(ConnectionInterface $conn)
     {
-        $this->clients->attach($conn);
-        echo "New connection: {$conn->resourceId}\n";
+        $queryString = $conn->httpRequest->getUri()->getQuery();
+        $channel = explode("=", $queryString)[1];
+        echo $channel;
+//        var_dump( $channel); exit;
+//        var_dump($queryString);
+        $this->clients[$channel][$conn->resourceId] = $conn;
+        echo " - New connection: {$conn->resourceId}\n";
     }
 
 
-    function onMessage(ConnectionInterface $from, $msg)
+    function onMessage(ConnectionInterface $from, $data)
     {
-        echo "message {$msg} from {$from->resourceId}\n";
+//        echo "message {$data} from {$from->resourceId}\n";
+        $data = json_decode($data,true);
+        $channel = $data['channel'];
+        (new Chat($data))->save();
+//        try {
+//            (new Chat())->save();
+//        } catch (\Exception $e) {
+//            var_dump($e->getMessage());
+//        }
 
-        foreach ($this->clients as $client) {
-            $client->send($msg);
+        foreach ($this->clients[$channel] as $client) {
+            $client->send($data['message']);
         }
     }
 

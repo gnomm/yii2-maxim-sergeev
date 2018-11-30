@@ -23,11 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'responsible_id' =>
                 [
                     'label' => 'Responsible',
-                    'value' => $model->user->username
+                    'value' => $model->responsible->username
                 ],
             'initiator_id' => [
                 'label' => 'Initiator',
-                'value' => $model->user->username
+                'value' => $model->initiator->username
+//                'value' => $model->user->username
             ],
             'created_at',
             'updated_at'

@@ -14,13 +14,14 @@ class m181128_105354_create_chat_table extends Migration
     {
         $this->createTable('chat', [
             'id' => $this->primaryKey(),
+            'channel' => $this->string(),
+            'message' => $this->string(1024),
             'user_id' => $this->integer(),
-            "task_id" => $this->integer(),
-            'message' => $this->string(1024)
+            'created_at' => $this->dateTime()
         ]);
 
-        $this->addForeignKey('fk_chat_user_id', "chat", "user_id", "user", "id");
-        $this->addForeignKey("fk_chat_task_id", "chat", "task_id", "tasks", "id");
+//        $this->addForeignKey('fk_chat_user_id', "chat", "user_id", "user", "id");
+//        $this->addForeignKey("fk_chat_task_id", "chat", "task_id", "tasks", "id");
     }
 
     /**

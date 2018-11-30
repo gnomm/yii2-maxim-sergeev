@@ -31,6 +31,7 @@ class TaskController extends Controller
 //        $month = 11;
         $id = Yii::$app->user->id;
 
+
         $provider = new ActiveDataProvider([
             'query' => Tasks::getTaskCurrentMonth($month, $id)
         ]);
@@ -99,16 +100,27 @@ class TaskController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionOne($id){
+    public function actionOne($id)
+    {
         $model = Tasks::findOne($id);
-        return $this->render("one",[
-            'model' => $model
+        $channel = "task_{$id}";
+//        var_dump($channel);
+        return $this->render("one", [
+            'model' => $model,
+            'history' => Chat::getChannelHistory($channel),
+            'channel' => $channel
         ]);
     }
 
     public function actionTest()
     {
-        Chat::addChat();
+        var_dump(Yii::$app->user->getId());
+//        $test = function ($data) {
+////             $data->user->username;
+//$data->_identity->username;
+//        };
+//        var_dump($test);
+//        Chat::addChat();
 
 
 //        var_dump(Yii::$app->getDb());

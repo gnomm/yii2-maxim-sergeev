@@ -26,13 +26,14 @@ use yii\widgets\ActiveForm;
         'responsible_id' => [
             'label' => 'Responsible',
             'value' => function ($data) {
-                return $data->user->username;
+                return $data->responsible->username;
+
             },
                  ],
         'initiator_id' => [
             'label' => 'Initiator',
             'value' => function ($data) {
-                return $data->user->username;
+                return $data->initiator->username;
             }
         ],
 //        'image' => [
@@ -44,14 +45,14 @@ use yii\widgets\ActiveForm;
 ////                return Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']);
 //            }
 //        ],
-        [
-            'label' => 'Chat',
-            'format' => 'raw',
-            'value' => function ($data) {
-                $url = "http://front.task.local/chat/";
-                return Html::a('Перейти', $url, ['title' => 'Перейти']);
-            }
-        ],
+//        [
+//            'label' => 'Chat',
+//            'format' => 'raw',
+//            'value' => function ($data) {
+//                $url = "http://front.task.local/chat/";
+//                return Html::a('Перейти', $url, ['title' => 'Перейти']);
+//            }
+//        ],
         [
             'class' => 'yii\grid\ActionColumn',
             'template' => '{buttons} {view} {update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка

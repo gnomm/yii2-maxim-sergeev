@@ -2,30 +2,32 @@
 
 namespace common\models\tables;
 
+use common\events\SentTaskMailEvent;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\Url;
+use yii\imagine\Image;
+use yii\web\UploadedFile;
+use yii\base\Model;
 
 /**
  * This is the model class for table "tasks".
  *
  * @property int $id
- * @property string $name
+ * @property int $name
  * @property string $description
  * @property string $date
  * @property int $responsible_id
  * @property int $initiator_id
- * @property int $project_id
- * @property string $created_at
- * @property string $updated_at
- *
-// * @property Chat[] $chats
-// * @property User $initiator
-// * @property User $responsible
  * @property Users $user
- */
+ * @var $image UploadedFile
+ * */
 class Tasks extends \yii\db\ActiveRecord
 {
+
+//    public $image;
+
     public function behaviors()
     {
         return [
@@ -45,6 +47,7 @@ class Tasks extends \yii\db\ActiveRecord
         return 'tasks';
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -52,12 +55,20 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'description'], 'required'],
-            [['description'], 'string'],
-            [['date', 'created_at', 'updated_at'], 'safe'],
-            [['responsible_id', 'initiator_id', 'project_id'], 'integer'],
-            [['name'], 'string', 'max' => 128],
-            [['initiator_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['initiator_id' => 'id']],
+            [['responsible_id'], 'integer'],
+            [['initiator_id'], 'integer'],
+            [['name', 'description'], 'string'],
+            [['date'], 'safe'],
             [['responsible_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['responsible_id' => 'id']],
+            [['initiator_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['initiator_id' => 'id']],
+//            [['date'], 'default', 'value' => date('Y-m-d:H:i:s')],
+            [['date'], 'default', 'value' => new Expression('NOW()')],
+//            [['date'], 'default', 'value' => Tasks::find()->],
+//            [['image'], 'file', 'extensions' => 'jpg, png'],
+            [['date'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>='],
+//            [['date'], 'compare', 'compareValue' => new Expression('NOW()'), 'operator' => '>='],
+
+
         ];
     }
 
@@ -71,34 +82,18 @@ class Tasks extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'date' => 'Date',
-            'responsible_id' => 'Responsible ID',
-            'initiator_id' => 'Initiator ID',
-            'project_id' => 'Project ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'responsible_id' => 'User ID',
+            'initiator_id' => 'User ID',
+//            'image' => 'Image'
+//            'created_at' => 'Created_at',
+//            'updated_at' => 'Updated_at'
         ];
     }
 
-//    /**
-//     * @return \yii\db\ActiveQuery
-//     */
-//    public function getChats()
-//    {
-//        return $this->hasMany(Chat::className(), ['task_id' => 'id']);
-//    }
-
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInitiator()
-    {
-        return $this->hasOne(Users::className(), ['id' => 'initiator_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getResponsible()
+    public function getUser()
     {
         return $this->hasOne(Users::className(), ['id' => 'responsible_id']);
     }
