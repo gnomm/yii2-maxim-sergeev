@@ -18,7 +18,8 @@ use yii\base\Model;
  * @property int $name
  * @property string $description
  * @property string $date
- * @property int $user_id
+ * @property int $responsible_id
+ * @property int $initiator_id
  * @property Users $user
  * @var $image UploadedFile
  * */
@@ -54,10 +55,12 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'description'], 'required'],
-            [['user_id'], 'integer'],
+            [['responsible_id'], 'integer'],
+            [['initiator_id'], 'integer'],
             [['name', 'description'], 'string'],
             [['date'], 'safe'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['responsible_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['responsible_id' => 'id']],
+            [['initiator_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['initiator_id' => 'id']],
 //            [['date'], 'default', 'value' => date('Y-m-d:H:i:s')],
             [['date'], 'default', 'value' => new Expression('NOW()')],
 //            [['date'], 'default', 'value' => Tasks::find()->],
@@ -79,7 +82,8 @@ class Tasks extends \yii\db\ActiveRecord
             'name' => 'Name',
             'description' => 'Description',
             'date' => 'Date',
-            'user_id' => 'User ID',
+            'responsible_id' => 'User ID',
+            'initiator_id' => 'User ID',
             'image' => 'Image'
 //            'created_at' => 'Created_at',
 //            'updated_at' => 'Updated_at'
@@ -91,13 +95,13 @@ class Tasks extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(Users::className(), ['id' => 'responsible_id']);
     }
 
     public static function getTaskCurrentMonth($month, $id)
     {
         return static::find()
-            ->where(["MONTH(date)" => $month, "user_id" => $id])//            ->with('user')
+            ->where(["MONTH(date)" => $month, "responsible_id" => $id])//            ->with('user')
             ;
 
 //        $tasks = \Yii::$app->db->createCommand("
@@ -110,14 +114,14 @@ class Tasks extends \yii\db\ActiveRecord
     public static function getUsers($id)
     {
         return static::find()
-            ->where(['user_id' => $id])
+            ->where(['responsible_id' => $id])
             ->all();
     }
 
     public static function getUserEmail($event)
     {
         return static::find()
-            ->where(['user_id' => $event->sender->user_id])
+            ->where(['responsible_id' => $event->sender->responsible_id])
             ->with('user')
             ->one();
     }
@@ -126,7 +130,7 @@ class Tasks extends \yii\db\ActiveRecord
     public static function getUserEmail2($id)
     {
         return static::find()
-            ->where(['user_id' => $id])
+            ->where(['responsible_id' => $id])
             ->with('user')
             ->one();
     }

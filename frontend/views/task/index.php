@@ -23,13 +23,13 @@ use yii\widgets\ActiveForm;
         'name',
         'description:ntext',
         'date',
-        'user_id' => [
+        'responsible_id' => [
             'label' => 'Name',
             'value' => function ($data) {
                 return $data->user->username;
             },
-
-        ],
+                 ],
+        'initiator_id',
         'image' => [
             'attribute' => 'image',
             'format' => 'html',

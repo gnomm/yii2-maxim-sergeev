@@ -23,8 +23,10 @@ use yii\widgets\ActiveForm;
         'language' => 'ru'
     ]) ?>
 
-    <!--    --><?//= $form->field($model, 'user_id')->tes ?>
-    <?= $form->field($model, 'user_id')->dropDownList($users) ?>
+    <!--    --><?//= $form->field($model, 'responsible_id')->tes ?>
+    <?= $form->field($model, 'responsible_id')->dropDownList($users) ?>
+    <?= $form->field($model, 'initiator_id')->dropDownList($users) ?>
+
     <!--    --><?//= $form->field($model, 'created_at') ?>
     <!--    --><?//= $form->field($model, 'updated_at') ?>
 

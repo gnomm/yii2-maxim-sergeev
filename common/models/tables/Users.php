@@ -84,7 +84,7 @@ class Users extends \yii\db\ActiveRecord
      */
     public function getTasks()
     {
-        return $this->hasMany(Tasks::className(), ['user_id' => 'id']);
+        return $this->hasMany(Tasks::className(), ['responsible_id' => 'id']);
     }
 
     public function getAddUser()

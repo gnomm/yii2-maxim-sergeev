@@ -23,11 +23,12 @@ use yii\widgets\ActiveForm;
         'language' => 'ru'
     ]) ?>
 
-<!--    --><?//= $form->field($model, 'user_id')->tes ?>
-    <?= $form->field($model, 'user_id')->dropDownList($users) ?>
+<!--    --><?//= $form->field($model, 'responsible_id')->tes ?>
+    <?= $form->field($model, 'responsible_id')->dropDownList($users) ?>
+<!--    --><?//= $form->field($model, 'responsible_id')->textInput(Yii::$app->user->identity->username) ?>
 <!--    --><?//= $form->field($model, 'created_at') ?>
 <!--    --><?//= $form->field($model, 'updated_at') ?>
-    <?= $form->field($model, 'image')->fileInput();?>
+<!--    --><?//= $form->field($model, 'image')->fileInput();?>
 <!--    echo \yii\helpers\Html::submitButton('Загрузить');-->
 
     <div class="form-group">

@@ -110,7 +110,7 @@ class TaskController extends Controller
 
 //var_dump(Yii::$app->user->identity->username);
 //        $chat = new Chat();
-//        $chat->user_id = 2;
+//        $chat->responsible_id = 2;
 //        $chat->task_id = 1;
 //        $chat->message = 'test';
 //        $chat->save();
@@ -187,7 +187,7 @@ class TaskController extends Controller
 //        $task->name = 'Test send';
 //        $task->description = 'new task';
 //        $task->date = '2018-10-21';
-//        $task->user_id = 4;
+//        $task->responsible_id = 4;
 //        $task->save();
 
         //        $model = new Test;
@@ -205,7 +205,7 @@ class TaskController extends Controller
 //            $task = new Tasks([
 //                'name' => 'Ознакомиться с проектом',
 //                'description' => 'Описаение задания',
-//                'user_id' => $event->sender->id
+//                'responsible_id' => $event->sender->id
 //            ]);
 //            $task->save();
 //        });

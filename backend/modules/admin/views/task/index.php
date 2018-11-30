@@ -28,12 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'date',
-            'user_id' => [
-                'label' => 'Name',
+            'responsible_id' => [
+                'label' => 'Responsible',
                 'value' => function ($data) {
                     return $data->user->username;
                 }
             ],
+            'initiator_id',
             ['class' => 'yii\grid\ActionColumn'],
 
 //            ['class' => 'yii\grid\SerialColumn'],
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'name',
 //            'description:ntext',
 //            'date',
-//            'user_id',
+//            'responsible_id',
 //
 //            ['class' => 'yii\grid\ActionColumn'],
         ],

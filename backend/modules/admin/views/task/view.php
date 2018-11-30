@@ -32,18 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'date',
-            'user_id' =>
+            'responsible_id' =>
                 [
-                    'label' => 'Name',
+                    'label' => 'responsible',
                     'value' => $model->user->username
                 ],
+            'initiator_id',
             'created_at',
             'updated_at'
 //            'id',
 //            'name',
 //            'description:ntext',
 //            'date',
-//            'user_id',
+//            'responsible_id',
         ],
     ]) ?>
 
