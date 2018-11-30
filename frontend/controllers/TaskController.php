@@ -99,6 +99,12 @@ class TaskController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionOne($id){
+        $model = Tasks::findOne($id);
+        return $this->render("one",[
+            'model' => $model
+        ]);
+    }
 
     public function actionTest()
     {

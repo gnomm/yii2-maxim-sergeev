@@ -24,21 +24,26 @@ use yii\widgets\ActiveForm;
         'description:ntext',
         'date',
         'responsible_id' => [
-            'label' => 'Name',
+            'label' => 'Responsible',
             'value' => function ($data) {
                 return $data->user->username;
             },
                  ],
-        'initiator_id',
-        'image' => [
-            'attribute' => 'image',
-            'format' => 'html',
+        'initiator_id' => [
+            'label' => 'Initiator',
             'value' => function ($data) {
-                return Html::a(Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']),
-                    Yii::getAlias('@web/uploadImg/') . $data['image']);
-//                return Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']);
+                return $data->user->username;
             }
         ],
+//        'image' => [
+//            'attribute' => 'image',
+//            'format' => 'html',
+//            'value' => function ($data) {
+//                return Html::a(Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']),
+//                    Yii::getAlias('@web/uploadImg/') . $data['image']);
+////                return Html::img(Yii::getAlias('@web/uploadImg/small/') . $data['image']);
+//            }
+//        ],
         [
             'label' => 'Chat',
             'format' => 'raw',

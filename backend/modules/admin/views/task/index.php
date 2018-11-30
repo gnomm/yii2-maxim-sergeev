@@ -34,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->user->username;
                 }
             ],
-            'initiator_id',
+//            'initiator_id',
+            'initiator_id' => [
+                'label' => 'Initiator',
+                'value' => function ($data) {
+                    return $data->user->username;
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
 
 //            ['class' => 'yii\grid\SerialColumn'],

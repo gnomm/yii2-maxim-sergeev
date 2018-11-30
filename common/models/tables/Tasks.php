@@ -64,7 +64,7 @@ class Tasks extends \yii\db\ActiveRecord
 //            [['date'], 'default', 'value' => date('Y-m-d:H:i:s')],
             [['date'], 'default', 'value' => new Expression('NOW()')],
 //            [['date'], 'default', 'value' => Tasks::find()->],
-            [['image'], 'file', 'extensions' => 'jpg, png'],
+//            [['image'], 'file', 'extensions' => 'jpg, png'],
             [['date'], 'compare', 'compareValue' => date('Y-m-d'), 'operator' => '>='],
 //            [['date'], 'compare', 'compareValue' => new Expression('NOW()'), 'operator' => '>='],
 
@@ -84,7 +84,7 @@ class Tasks extends \yii\db\ActiveRecord
             'date' => 'Date',
             'responsible_id' => 'User ID',
             'initiator_id' => 'User ID',
-            'image' => 'Image'
+//            'image' => 'Image'
 //            'created_at' => 'Created_at',
 //            'updated_at' => 'Updated_at'
         ];

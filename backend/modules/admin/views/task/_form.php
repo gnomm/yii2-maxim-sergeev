@@ -24,8 +24,9 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
 <!--    --><?//= $form->field($model, 'responsible_id')->tes ?>
-    <?= $form->field($model, 'responsible_id')->dropDownList($users) ?>
-<!--    --><?//= $form->field($model, 'responsible_id')->textInput(Yii::$app->user->identity->username) ?>
+
+    <?= $form->field($model, 'responsible_id')->dropDownList($users)->label('Responsible') ?>
+    <?= $form->field($model, 'initiator_id')->dropDownList($users)->label('Initiator') ?>
 <!--    --><?//= $form->field($model, 'created_at') ?>
 <!--    --><?//= $form->field($model, 'updated_at') ?>
 <!--    --><?//= $form->field($model, 'image')->fileInput();?>

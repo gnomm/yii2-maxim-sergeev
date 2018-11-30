@@ -34,10 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'responsible_id' =>
                 [
-                    'label' => 'responsible',
+                    'label' => 'Responsible',
                     'value' => $model->user->username
                 ],
-            'initiator_id',
+            'initiator_id' =>[
+                'label' => 'Initiator',
+                'value' => $model->user->username
+            ],
             'created_at',
             'updated_at'
 //            'id',
