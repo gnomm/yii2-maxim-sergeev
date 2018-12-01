@@ -2,20 +2,17 @@
 
 namespace backend\modules\admin\controllers;
 
-use common\models\tables\Users;
 use Yii;
-use common\models\tables\tasks;
-use common\models\search\TasksSearch;
-use yii\helpers\ArrayHelper;
+use common\models\tables\Project;
+use common\models\search\ProjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * AdminTaskController implements the CRUD actions for tasks model.
+ * ProjectController implements the CRUD actions for Project model.
  */
-class TaskController extends Controller
+class ProjectController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -27,32 +24,28 @@ class TaskController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
-                    'delete' => ['POST'],
                 ],
             ],
         ];
     }
 
     /**
-     * Lists all tasks models.
+     * Lists all Project models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TasksSearch();
+        $searchModel = new ProjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'users' => $users
         ]);
     }
 
     /**
-     * Displays a single tasks model.
+     * Displays a single Project model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,31 +58,25 @@ class TaskController extends Controller
     }
 
     /**
-     * Creates a new tasks model.
+     * Creates a new Project model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new tasks();
+        $model = new Project();
 
-        if ($model->load(Yii::$app->request->post())) {
-//            $model->image = UploadedFile::getInstance($model, 'image');
-            $model->save();
-//            $model->upload();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
-//var_dump($users);
         return $this->render('create', [
             'model' => $model,
-            'users' => $users
         ]);
     }
 
     /**
-     * Updates an existing tasks model.
+     * Updates an existing Project model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,15 +90,13 @@ class TaskController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
         return $this->render('update', [
             'model' => $model,
-            'users' => $users
         ]);
     }
 
     /**
-     * Deletes an existing tasks model.
+     * Deletes an existing Project model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -125,15 +110,15 @@ class TaskController extends Controller
     }
 
     /**
-     * Finds the tasks model based on its primary key value.
+     * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return tasks the loaded model
+     * @return Project the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = tasks::findOne($id)) !== null) {
+        if (($model = Project::findOne($id)) !== null) {
             return $model;
         }
 

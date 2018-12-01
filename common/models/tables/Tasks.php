@@ -106,7 +106,8 @@ class Tasks extends \yii\db\ActiveRecord
     public static function getTaskCurrentMonth($month, $id)
     {
         return static::find()
-            ->where(["MONTH(date)" => $month, "responsible_id" => $id])//            ->with('user')
+            ->where(["MONTH(date)" => $month, "responsible_id" => $id])
+            //            ->with('user')
             ;
 
 //        $tasks = \Yii::$app->db->createCommand("

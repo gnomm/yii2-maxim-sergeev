@@ -25,8 +25,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
+
 //            'id',
-            'name',
+//            [
+//                'label' => 'Chat',
+//                'format' => 'raw',
+//                'value' => function ($data) {
+//                    $url = "http://front.task.local/task/";
+//                    return Html::a('name', $url, ['title' => 'Перейти']);
+//                }
+//            ],
+            'name' => [
+                'label' => 'project',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    $url = "http://front.task.local/task/";
+                    $name = $data->name;
+                    return Html::a($name, $url, ['title' => 'Перейти']);
+                }
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка

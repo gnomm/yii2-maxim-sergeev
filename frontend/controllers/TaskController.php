@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
 use common\models\tables\Chat;
+use common\models\tables\Project;
 use Yii;
 //use app\behaviors\MyBehaviors;
 use common\models\tables\Tasks;
@@ -31,12 +32,18 @@ class TaskController extends Controller
 //        $month = 11;
         $id = Yii::$app->user->id;
 
+//        var_dump(Yii::$app);exit;
 
         $provider = new ActiveDataProvider([
-            'query' => Tasks::getTaskCurrentMonth($month, $id)
+            'query' => Tasks::getTaskCurrentMonth($month, $id),
+
         ]);
 
+
+
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
+
+
 
         return $this->render('index', [
             'provider' => $provider,
@@ -114,7 +121,11 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        var_dump(Yii::$app->user->getId());
+        var_dump(Project::getTask(1));
+
+//        $project = new Project();
+//        $project-
+//        var_dump($project);
 //        $test = function ($data) {
 ////             $data->user->username;
 //$data->_identity->username;

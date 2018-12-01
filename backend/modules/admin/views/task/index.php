@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Tasks', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php \yii\widgets\Pjax::begin()?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -31,16 +33,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'responsible_id' => [
                 'label' => 'Responsible',
                 'value' => function ($data) {
-                    return $data->->username;
-                }
+                    return $data->responsible->username;
+
+                },
             ],
-//            'initiator_id',
             'initiator_id' => [
                 'label' => 'Initiator',
                 'value' => function ($data) {
-                    return $data->user->username;
+                    return $data->initiator->username;
                 }
             ],
+//            'responsible_id' => [
+//                'label' => 'Responsible',
+////                'value' => function ($data) {
+////                    return $data->responsible->username;
+////                }
+//            ],
+////            'initiator_id',
+//            'initiator_id' => [
+//                'label' => 'Initiator',
+////                'value' => function ($data) {
+////                    return $data->user->username;
+////                }
+//            ],
             ['class' => 'yii\grid\ActionColumn'],
 
 //            ['class' => 'yii\grid\SerialColumn'],
@@ -54,4 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <?= \yii\helpers\Html::a("Обновить", ['task/index'], ['class' => 'btn btn-success']) ?>
+    <?php \yii\widgets\Pjax::end()?>
+
 </div>
