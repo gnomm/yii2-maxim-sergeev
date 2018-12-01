@@ -37,7 +37,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Task', 'url' => ['/task']],
+        ['label' => 'Project', 'url' => ['/project']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
@@ -62,7 +62,7 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?= 'Рабоатет' ?>
+<!--        --><?//= 'Рабоатет' ?>
 
 
         <?= Breadcrumbs::widget([

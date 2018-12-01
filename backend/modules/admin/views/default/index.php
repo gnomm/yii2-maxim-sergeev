@@ -16,5 +16,6 @@
 <p><?= \yii\helpers\Html::a('Task', ['task/'])?></p>
 <p><?= \yii\helpers\Html::a('Roles', ['roles/'])?></p>
 <p><?= \yii\helpers\Html::a('Users', ['users/'])?></p>
+<p><?= \yii\helpers\Html::a('Project', ['project/'])?></p>
 <p><?= \yii\helpers\Html::a('Chat', ['chat/'])?></p>
 

@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'responsible_id' => [
                 'label' => 'Responsible',
                 'value' => function ($data) {
-                    return $data->user->username;
+                    return $data->->username;
                 }
             ],
 //            'initiator_id',

@@ -55,7 +55,7 @@ use yii\widgets\ActiveForm;
 //        ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{buttons} {view} {update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка
+            'template' => '{view} {update} {delete}{link}', // кнопка просмотра, изменения, удаления, ссылка
         ],
     ],
 ]) ?>
