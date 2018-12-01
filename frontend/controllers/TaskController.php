@@ -121,7 +121,7 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        var_dump(Project::getTask(1));
+//        var_dump(Project::getTask(1));
 
 //        $project = new Project();
 //        $project-
