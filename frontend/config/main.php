@@ -16,7 +16,6 @@ return [
             'csrfParam' => '_csrf-frontend',
             'cookieValidationKey' => $params['cookieValidationKey'],
         ],
-
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
