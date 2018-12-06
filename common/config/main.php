@@ -9,7 +9,10 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-
+        'bot' => [
+            'class' => \SonkoDmitry\Yii\TelegramBot\Component::class,
+            'apiToken' => '695443635:AAHNzyvIjIWSHKYp1HWwnh1XJISs6j7MPzk'
+        ],
 //        'user' => [
 //            'identityClass' => 'common\models\User',
 //            'enableAutoLogin' => true,

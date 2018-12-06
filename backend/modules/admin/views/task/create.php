@@ -14,10 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tasks-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<!--    --><?php //var_dump($project)?><!-- exit;-->
     <?= $this->render('_form', [
         'model' => $model,
-        'users' => $users
+        'users' => $users,
+        'project' => $project
     ]) ?>
 
 </div>

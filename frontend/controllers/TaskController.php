@@ -6,6 +6,7 @@ use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
 use common\models\tables\Chat;
 use common\models\tables\Project;
+use common\models\tables\TelegramSp;
 use Yii;
 //use app\behaviors\MyBehaviors;
 use common\models\tables\Tasks;
@@ -121,6 +122,8 @@ class TaskController extends Controller
 
     public function actionTest()
     {
+        $test = TelegramSp::getDelSp();
+        var_dump($test);exit;
 //        var_dump(Project::getTask(1));
 
 //        $project = new Project();

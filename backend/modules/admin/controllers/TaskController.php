@@ -2,6 +2,7 @@
 
 namespace backend\modules\admin\controllers;
 
+use common\models\tables\Project;
 use common\models\tables\Users;
 use Yii;
 use common\models\tables\tasks;
@@ -81,10 +82,14 @@ class TaskController extends Controller
         }
 
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
+        $project = ArrayHelper::map(Project::find()->all(), 'id', 'name');
+//        var_dump($project); exit;
+
 //var_dump($users);
         return $this->render('create', [
             'model' => $model,
-            'users' => $users
+            'users' => $users,
+            'project' => $project
         ]);
     }
 
@@ -104,9 +109,11 @@ class TaskController extends Controller
         }
 
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
+        $project = ArrayHelper::map(Project::find()->all(), 'id', 'name');
         return $this->render('update', [
             'model' => $model,
-            'users' => $users
+            'users' => $users,
+            'project' => $project
         ]);
     }
 

@@ -5,6 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\tables\tasks */
 /* @var $users array*/
+/* @var $project array*/
 
 
 $this->title = 'Update Tasks: ' . $model->name;
@@ -15,10 +16,12 @@ $this->params['breadcrumbs'][] = 'Update';
 <div class="tasks-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
+<!--    --><?php //var_dump($project); exit?>
 <?php //var_dump($users)?>
     <?= $this->render('_form', [
         'model' => $model,
-        'users' => $users
+        'users' => $users,
+        'project' => $project
     ]) ?>
 
 </div>

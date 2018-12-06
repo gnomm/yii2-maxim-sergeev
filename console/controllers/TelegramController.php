@@ -5,6 +5,7 @@ namespace console\controllers;
 
 
 use common\models\tables\TelegramOffset;
+use common\models\tables\TelegramSp;
 use SonkoDmitry\Yii\TelegramBot\Component;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
@@ -75,9 +76,16 @@ class TelegramController extends Controller
                 $response .= "/projecy_create ##project_name## - создание проекта \n";
                 $response .= "/task_create ##responcible## ##project## - создание таска \n";
                 $response .= "/sp_create - подписка на создание проекта \n";
+                $response .= "/sp_delete - удаление подписки на создание проекта \n";
                 break;
             case '/sp_create':
                 $response .= "Вы подписаны на оповещение о создании проектов";
+                TelegramSp::getAddSp();
+                break;
+            case '/sp_delete':
+                $response .= "Подписка удалена на оповещение о создании проектов";
+                TelegramSp::getDelSp();
+                break;
         }
 
         $this->bot->sendMessage($message->getFrom()->getId(), $response);

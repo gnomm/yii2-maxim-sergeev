@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\tables\tasks */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $users  array */
+/* @var $project  array */
 ?>
 
 <?php //var_dump($model)?>
@@ -23,8 +24,8 @@ use yii\widgets\ActiveForm;
         'language' => 'ru'
     ]) ?>
 
-<!--    --><?//= $form->field($model, 'responsible_id')->tes ?>
-
+<!--    --><?//= $form->field($model, 'project_id')->textInput() ?>
+    <?= $form->field($model, 'project_id')->dropDownList($project)->label('Project') ?>
     <?= $form->field($model, 'responsible_id')->dropDownList($users)->label('Responsible') ?>
     <?= $form->field($model, 'initiator_id')->dropDownList($users)->label('Initiator') ?>
 <!--    --><?//= $form->field($model, 'created_at') ?>

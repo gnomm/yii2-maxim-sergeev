@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description:ntext',
             'date',
+            'project_id',
             'responsible_id' => [
                 'label' => 'Responsible',
                 'value' => function ($data) {

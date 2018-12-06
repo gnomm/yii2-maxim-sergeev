@@ -16,12 +16,13 @@ class TelegramController extends Controller
         $bot->setCurlOption(CURLOPT_HTTPHEADER, ['Expect:']);
 
         $updates = $bot->getUpdates();
-
+//var_dump($updates);
         $messages = [];
 
         foreach ($updates as $update) {
             $message = $update->getMessage();
             $username = $message->getFrom()->getUsername();
+//            $username = $message->get;
             $messages[] = [
                 'text' => $message->getText(),
                 'username' => $username

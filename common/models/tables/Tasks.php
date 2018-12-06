@@ -56,6 +56,7 @@ class Tasks extends \yii\db\ActiveRecord
             [['date', 'created_at', 'updated_at'], 'safe'],
             [['responsible_id', 'initiator_id', 'project_id'], 'integer'],
             [['name'], 'string', 'max' => 128],
+//            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
             [['initiator_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['initiator_id' => 'id']],
             [['responsible_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['responsible_id' => 'id']],
         ];
@@ -86,6 +87,14 @@ class Tasks extends \yii\db\ActiveRecord
 //    {
 //        return $this->hasMany(Chat::className(), ['task_id' => 'id']);
 //    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProject()
+    {
+        return $this->hasOne(Project::className(), ['id' => 'project_id']);
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery
