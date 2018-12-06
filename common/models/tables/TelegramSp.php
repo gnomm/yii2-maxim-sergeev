@@ -46,7 +46,7 @@ class TelegramSp extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getAddSp()
+    public static function getTelegramIdUser()
     {
         /** @var Component $bot */
         $bot = Yii::$app->bot;
@@ -55,6 +55,12 @@ class TelegramSp extends \yii\db\ActiveRecord
         foreach ($updates as $update) {
             $id = $update->getMessage()->getFrom()->getId();
         }
+        return $id;
+    }
+
+    public function getAddSp()
+    {
+        $id = TelegramSp::getTelegramIdUser();
 
         $addSp = new TelegramSp([
             'telegram_id' => $id,
@@ -65,19 +71,18 @@ class TelegramSp extends \yii\db\ActiveRecord
 
     public function getDelSp()
     {
-        /** @var Component $bot */
-        $bot = Yii::$app->bot;
-        $updates = $bot->getUpdates();
-
-        foreach ($updates as $update) {
-            $id = $update->getMessage()->getFrom()->getId();
-        }
+    $id  = TelegramSp::getTelegramIdUser();
 
         $delSp = TelegramSp::find()
             ->where(['telegram_id' => $id])
             ->one();
         $delSp->delete();
+    }
 
-
+    public function sendSp()
+    {
+        /** @var Component $bot */
+        $id = TelegramSp::getTelegramIdUser();
+        $bot->sendMessage($id, 'Создан новый проект');
     }
 }
