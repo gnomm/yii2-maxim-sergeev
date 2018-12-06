@@ -4,6 +4,7 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
+    'bootstrap' => ['CreateProjectEventComponent'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
@@ -12,6 +13,9 @@ return [
         'bot' => [
             'class' => \SonkoDmitry\Yii\TelegramBot\Component::class,
             'apiToken' => ''
+        ],
+        'CreateProjectEventComponent' => [
+          'class' => \common\components\CreateProjectEventComponent::class
         ],
 //        'user' => [
 //            'identityClass' => 'common\models\User',

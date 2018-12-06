@@ -122,7 +122,7 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        $test = TelegramSp::getDelSp();
+        $test = TelegramSp::getSendSp();
         var_dump($test);exit;
 //        var_dump(Project::getTask(1));
 

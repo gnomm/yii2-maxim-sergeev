@@ -71,7 +71,7 @@ class TelegramSp extends \yii\db\ActiveRecord
 
     public function getDelSp()
     {
-    $id  = TelegramSp::getTelegramIdUser();
+        $id = TelegramSp::getTelegramIdUser();
 
         $delSp = TelegramSp::find()
             ->where(['telegram_id' => $id])
@@ -79,10 +79,29 @@ class TelegramSp extends \yii\db\ActiveRecord
         $delSp->delete();
     }
 
-    public function sendSp()
+    public static function getSendSp()
     {
         /** @var Component $bot */
-        $id = TelegramSp::getTelegramIdUser();
-        $bot->sendMessage($id, 'Создан новый проект');
+        $bot = \Yii::$app->bot;
+        $users = TelegramSp::find()
+            ->where('telegram_id')
+            ->all();
+
+        $newProject = Project::find()
+//            ->where('id')
+            ->orderBy(['id' => SORT_DESC])
+            ->limit(1)
+            ->one();
+
+
+        $projectId = $newProject['id'];
+        $link = "http://front.task.local/project/view?id={$projectId}";
+//        var_dump($link);
+//        $bot->sendMessage(466488726, "Создан новый проект {$link}");
+
+        foreach ($users as $user) {
+            $usersSend = $user['telegram_id'];
+            $bot->sendMessage($usersSend, "Создан новый проект {$link}");
+        }
     }
 }
