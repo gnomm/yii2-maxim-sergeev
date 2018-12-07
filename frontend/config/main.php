@@ -15,6 +15,10 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'cookieValidationKey' => $params['cookieValidationKey'],
+            'parsers' => [
+              'application/json' => yii\web\JsonParser::class
+//                'application/json' => yii\web\Json
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -67,6 +71,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['message'] ]
             ],
         ],
     ],

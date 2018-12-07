@@ -6,6 +6,7 @@ use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
 use common\models\tables\Chat;
 use common\models\tables\Project;
+use common\models\tables\TelegramSp;
 use common\models\tables\TelegramSpOld;
 use Yii;
 //use app\behaviors\MyBehaviors;
@@ -41,9 +42,7 @@ class TaskController extends Controller
         ]);
 
 
-
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
-
 
 
         return $this->render('index', [
@@ -120,10 +119,25 @@ class TaskController extends Controller
         ]);
     }
 
-    public function actionTest()
+
+        public function actionTest()
     {
-        $test = TelegramSpOld::getSendSp();
-        var_dump($test);exit;
+        $id = TelegramSp::getTelegramIdUser();
+        echo  $id;
+//        /** @var Component $bot */
+//        $bot = Yii::$app->bot;
+//        $updates = $bot->getUpdates();
+//
+//        foreach ($updates as $update) {
+//            $id = $update->getMessage()->getFrom()->getId();
+//        }
+//        echo $id;
+
+
+
+
+//        $test = TelegramSpOld::getSendSp();
+//        var_dump($test);exit;
 //        var_dump(Project::getTask(1));
 
 //        $project = new Project();
