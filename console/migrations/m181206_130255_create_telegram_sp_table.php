@@ -14,7 +14,7 @@ class m181206_130255_create_telegram_sp_table extends Migration
     {
         $this->createTable('telegram_sp', [
             'id' => $this->primaryKey(),
-            'telegram_id' => $this->integer()->unique(),
+            'telegram_id_user' => $this->integer()->unique(),
             'timestamp_offset' => $this->timestamp()
         ]);
     }

@@ -2,14 +2,13 @@
 
 namespace common\models\tables;
 
-use SonkoDmitry\Yii\TelegramBot\Component;
 use Yii;
 
 /**
  * This is the model class for table "telegram_sp".
  *
  * @property int $id
- * @property int $telegram_id
+ * @property int $telegram_id_user
  * @property string $timestamp_offset
  */
 class TelegramSp extends \yii\db\ActiveRecord
@@ -28,9 +27,9 @@ class TelegramSp extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['telegram_id'], 'integer'],
+            [['telegram_id_user'], 'integer'],
             [['timestamp_offset'], 'safe'],
-            [['telegram_id'], 'unique'],
+            [['telegram_id_user'], 'unique'],
         ];
     }
 
@@ -41,7 +40,7 @@ class TelegramSp extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'telegram_id' => 'Telegram ID',
+            'telegram_id_user' => 'Telegram Id User',
             'timestamp_offset' => 'Timestamp Offset',
         ];
     }
@@ -63,7 +62,7 @@ class TelegramSp extends \yii\db\ActiveRecord
         $id = TelegramSp::getTelegramIdUser();
 
         $addSp = new TelegramSp([
-            'telegram_id' => $id,
+            'telegram_id_user' => $id,
             'timestamp_offset' => date("Y:m:d H:i:s")
         ]);
         $addSp->save();
@@ -74,7 +73,7 @@ class TelegramSp extends \yii\db\ActiveRecord
         $id = TelegramSp::getTelegramIdUser();
 
         $delSp = TelegramSp::find()
-            ->where(['telegram_id' => $id])
+            ->where(['telegram_id_user' => $id])
             ->one();
         $delSp->delete();
     }
@@ -84,7 +83,7 @@ class TelegramSp extends \yii\db\ActiveRecord
         /** @var Component $bot */
         $bot = \Yii::$app->bot;
         $users = TelegramSp::find()
-            ->where('telegram_id')
+            ->where('telegram_id_user')
             ->all();
 
         $newProject = Project::find()
@@ -100,8 +99,9 @@ class TelegramSp extends \yii\db\ActiveRecord
 //        $bot->sendMessage(466488726, "Создан новый проект {$link}");
 
         foreach ($users as $user) {
-            $usersSend = $user['telegram_id'];
+            $usersSend = $user['telegram_id_user'];
             $bot->sendMessage($usersSend, "Создан новый проект {$link}");
         }
     }
+
 }

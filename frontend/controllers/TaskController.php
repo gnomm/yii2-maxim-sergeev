@@ -6,7 +6,7 @@ use app\events\SentTaskMailEvent;
 use common\models\ContactForm;
 use common\models\tables\Chat;
 use common\models\tables\Project;
-use common\models\tables\TelegramSp;
+use common\models\tables\TelegramSpOld;
 use Yii;
 //use app\behaviors\MyBehaviors;
 use common\models\tables\Tasks;
@@ -122,7 +122,7 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        $test = TelegramSp::getSendSp();
+        $test = TelegramSpOld::getSendSp();
         var_dump($test);exit;
 //        var_dump(Project::getTask(1));
 

@@ -6,6 +6,7 @@ namespace console\controllers;
 
 use common\models\tables\TelegramOffset;
 use common\models\tables\TelegramSp;
+use common\models\tables\TelegramSpOld;
 use SonkoDmitry\Yii\TelegramBot\Component;
 use TelegramBot\Api\Types\Message;
 use TelegramBot\Api\Types\Update;
