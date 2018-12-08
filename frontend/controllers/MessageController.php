@@ -42,18 +42,18 @@ class MessageController extends ActiveController
     {
     $action = parent::actions();
 //    unset($action['delete']);
-        unset($action['index']);
+//        unset($action['index']);
     return $action;
     }
 
-    public function actionIndex()
-    {
-        $query = Message::find();
-        $query->where(['user_id' => 2]);
-        return new ActiveDataProvider([
-            'query' => $query
-        ]);
-    }
+//    public function actionIndex()
+//    {
+//        $query = Message::find();
+//        $query->where(['user_id' => 2]);
+//        return new ActiveDataProvider([
+//            'query' => $query
+//        ]);
+//    }
 
 
 

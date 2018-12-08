@@ -17,6 +17,7 @@ use common\models\User;
 use yii\base\Event;
 use yii\data\ActiveDataProvider;
 use yii\debug\models\timeline\DataProvider;
+use yii\rest\ActiveController;
 use yii\swiftmailer\Mailer;
 use yii\web\Controller;
 use yii\helpers\ArrayHelper;
@@ -26,8 +27,11 @@ use yii\filters\VerbFilter;
 use yii\validators;
 use yii\web\UploadedFile;
 
-class TaskController extends Controller
+class TaskController extends ActiveController
+//class TaskController extends ActiveController
 {
+    public $modelClass = Tasks::class;
+
     public function actionIndex()
     {
         $month = date('n');

@@ -63,15 +63,16 @@ return [
                 'baseUrl' => '@web/themes/new',
                 'pathMap' => [
                     '@app/views' => '@app/themes/new',
-                ]
-            ],
+                    ]
+                ],
         ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => \yii\rest\UrlRule::class, 'controller' => ['message'] ]
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['message'] ],
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['task'] ]
             ],
         ],
     ],
