@@ -17,7 +17,6 @@ return [
         'CreateProjectEventComponent' => [
           'class' => \common\components\CreateProjectEventComponent::class
         ],
-
 //        'user' => [
 //            'identityClass' => 'common\models\User',
 //            'enableAutoLogin' => true,
