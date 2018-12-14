@@ -27,11 +27,9 @@ use yii\filters\VerbFilter;
 use yii\validators;
 use yii\web\UploadedFile;
 
-class TaskController extends ActiveController
+class TaskController extends Controller
 //class TaskController extends ActiveController
 {
-    public $modelClass = Tasks::class;
-
     public function actionIndex()
     {
         $month = date('n');
@@ -124,10 +122,10 @@ class TaskController extends ActiveController
     }
 
 
-        public function actionTest()
+    public function actionTest()
     {
         $id = TelegramSp::getTelegramIdUser();
-        echo  $id;
+        echo $id;
 //        /** @var Component $bot */
 //        $bot = Yii::$app->bot;
 //        $updates = $bot->getUpdates();
@@ -136,8 +134,6 @@ class TaskController extends ActiveController
 //            $id = $update->getMessage()->getFrom()->getId();
 //        }
 //        echo $id;
-
-
 
 
 //        $test = TelegramSpOld::getSendSp();

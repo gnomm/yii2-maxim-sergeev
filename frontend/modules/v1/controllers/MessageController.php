@@ -6,9 +6,10 @@
  * Time: 13:28
  */
 
-namespace frontend\controllers;
+namespace frontend\modules\v1\controllers;
 
 
+use common\models\search\MessageFilter;
 use common\models\tables\Message;
 use common\models\tables\Users;
 use common\models\User;
@@ -42,18 +43,20 @@ class MessageController extends ActiveController
     {
     $action = parent::actions();
 //    unset($action['delete']);
-//        unset($action['index']);
+        unset($action['index']);
     return $action;
     }
 
-//    public function actionIndex()
-//    {
-//        $query = Message::find();
+    public function actionIndex()
+    {
+        $filter = \Yii::$app->request->get('filter');
+//        var_dump($filter);exit;
+        $query = Message::find();
 //        $query->where(['user_id' => 2]);
-//        return new ActiveDataProvider([
-//            'query' => $query
-//        ]);
-//    }
+        return new ActiveDataProvider([
+            'query' => (new MessageFilter)->filter($filter, $query)
+        ]);
+    }
 
 
 

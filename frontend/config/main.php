@@ -11,6 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'v1' => [
+            'class' => 'frontend\modules\v1\module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -71,8 +76,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => \yii\rest\UrlRule::class, 'controller' => ['message'] ],
-                ['class' => \yii\rest\UrlRule::class, 'controller' => ['task'] ]
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['v1/message'] ],
+                ['class' => \yii\rest\UrlRule::class, 'controller' => ['v1/task'] ]
             ],
         ],
     ],
