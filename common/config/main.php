@@ -7,12 +7,15 @@ return [
     'bootstrap' => ['CreateProjectEventComponent'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'bot' => [
             'class' => \SonkoDmitry\Yii\TelegramBot\Component::class,
-            'apiToken' => ''
+            'apiToken' => '695443635:AAHNzyvIjIWSHKYp1HWwnh1XJISs6j7MPzk'
         ],
         'CreateProjectEventComponent' => [
           'class' => \common\components\CreateProjectEventComponent::class

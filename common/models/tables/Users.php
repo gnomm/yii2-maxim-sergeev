@@ -94,9 +94,9 @@ class Users extends \yii\db\ActiveRecord
         $user->password_hash = \Yii::$app->security->generatePasswordHash($this->password_hash);
         $user->email = $this->email;
         $user->role_id = $this->role_id;
-//        return $user->save();
+        return $user->save();
 //        var_dump($user->save());
-        var_dump($user);
+//        var_dump($user);
     }
 
 

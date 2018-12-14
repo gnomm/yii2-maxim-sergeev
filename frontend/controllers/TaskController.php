@@ -21,6 +21,7 @@ use yii\rest\ActiveController;
 use yii\swiftmailer\Mailer;
 use yii\web\Controller;
 use yii\helpers\ArrayHelper;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 //use app\validators\MyValidator;
@@ -35,17 +36,11 @@ class TaskController extends Controller
         $month = date('n');
 //        $month = 11;
         $id = Yii::$app->user->id;
-
-//        var_dump(Yii::$app);exit;
-
         $provider = new ActiveDataProvider([
             'query' => Tasks::getTaskCurrentMonth($month, $id),
-
         ]);
 
-
         $users = ArrayHelper::map(Users::find()->all(), 'id', 'username');
-
 
         return $this->render('index', [
             'provider' => $provider,
@@ -113,7 +108,6 @@ class TaskController extends Controller
     {
         $model = Tasks::findOne($id);
         $channel = "task_{$id}";
-//        var_dump($channel);
         return $this->render("one", [
             'model' => $model,
             'history' => Chat::getChannelHistory($channel),
@@ -124,8 +118,19 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        $id = TelegramSp::getTelegramIdUser();
-        echo $id;
+        if (!Yii::$app->user->can('updateProject')) {
+            throw new ForbiddenHttpException('Access denied');
+        }
+
+        echo 'test';exit;
+
+//        if (!\Yii::$app->user->can('updateNews')) {
+//            throw new ForbiddenHttpException('Access denied');
+//        }
+
+
+//        $id = TelegramSp::getTelegramIdUser();
+//        echo $id;
 //        /** @var Component $bot */
 //        $bot = Yii::$app->bot;
 //        $updates = $bot->getUpdates();

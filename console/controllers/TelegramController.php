@@ -18,12 +18,13 @@ class TelegramController extends Controller
     private $bot;
     private $offset = 0;
 
+//    public $bot;
+//    public $offset = 0;
+
     public function init()
     {
         parent::init();
         $this->bot = \Yii::$app->bot;
-
-
     }
 
 
@@ -43,7 +44,9 @@ class TelegramController extends Controller
         } else {
             echo "Новых сообщений нет" . PHP_EOL;
         }
+//        var_dump(new TelegramOffset());
     }
+
 
     private function getOffset()
     {
@@ -65,6 +68,7 @@ class TelegramController extends Controller
         $model->save();
     }
 
+
     private function processCommand(Message $message)
     {
         $params = explode(" ", $message->getText());
@@ -80,11 +84,11 @@ class TelegramController extends Controller
                 $response .= "/sp_delete - удаление подписки на создание проекта \n";
                 break;
             case '/sp_create':
-                $response .= "Вы подписаны на оповещение о создании проектов";
+                $response = "Вы подписаны на оповещение о создании проектов";
                 TelegramSp::getAddSp();
                 break;
             case '/sp_delete':
-                $response .= "Подписка удалена на оповещение о создании проектов";
+                $response = "Подписка удалена на оповещение о создании проектов";
                 TelegramSp::getDelSp();
                 break;
         }
