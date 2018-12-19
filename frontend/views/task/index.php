@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 /* @var $users  array */
 ?>
 
+<?php //var_dump(Yii::$ap)?>
 <?= \yii\grid\GridView::widget([
 //    'model' => $model,
     'dataProvider' => $provider,

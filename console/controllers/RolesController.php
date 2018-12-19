@@ -1,4 +1,5 @@
 <?php
+
 namespace console\controllers;
 
 use common\models\User;
@@ -45,6 +46,17 @@ class RolesController extends Controller
         $this->stdout('Done!' . PHP_EOL);
     }
 
+    public function actionStatus()
+    {
+        $username = $this->prompt('Username:', ['required' => true]);
+        $user = $user = $this->findModel($username);
+        $roleName = ArrayHelper::map(Yii::$app->authManager->getRolesByUser($user->id), 'name', 'description');
+//        $authManager = Yii::$app->getAuthManager();
+//        $role = $authManager->getRole($roleName);
+//        var_dump($roleName);
+
+    }
+
 
     private function findModel($username)
     {
@@ -53,4 +65,6 @@ class RolesController extends Controller
         }
         return $model;
     }
+
+
 }

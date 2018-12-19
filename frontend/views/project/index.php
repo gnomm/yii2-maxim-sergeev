@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--        --><? //= Html::a('Create Project', ['create'], ['class' => 'btn btn-success']) ?>
     <!--    </p>-->
 
+    <!--    --><?php //var_dump(); ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -35,11 +37,15 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    return Html::a('name', $url, ['title' => 'Перейти']);
 //                }
 //            ],
+//            'name',
             'name' => [
                 'label' => 'project',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    $url = "http://front.task.local/task/";
+                    $id = $data->id;
+//                    var_dump($id);
+//                    $url = "http://front.task.local/project/view?id={$id}";
+                    $url = "http://front.task.local/task?project_id=$id";
                     $name = $data->name;
                     return Html::a($name, $url, ['title' => 'Перейти']);
                 }
@@ -56,18 +62,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-<!--    --><?//= GridView::widget([
-//        'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
-//        'columns' => [
-//            ['class' => 'yii\grid\SerialColumn'],
-//
-//            'id',
-//            'name',
-//
-//            ['class' => 'yii\grid\ActionColumn'],
-//        ],
-//    ]); ?>
+    <!--    --><? //= GridView::widget([
+    //        'dataProvider' => $dataProvider,
+    //        'filterModel' => $searchModel,
+    //        'columns' => [
+    //            ['class' => 'yii\grid\SerialColumn'],
+    //
+    //            'id',
+    //            'name',
+    //
+    //            ['class' => 'yii\grid\ActionColumn'],
+    //        ],
+    //    ]); ?>
 
 
 </div>

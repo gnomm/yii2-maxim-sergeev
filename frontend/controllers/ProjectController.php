@@ -36,12 +36,25 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+//        var_dump(Yii::$app->request->get('id')); ;
+
         $searchModel = new ProjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
+//        $id = Yii::$app->request->get('id');
+//        var_dump($session->get('id'));
+//        'id' = $id;
+
+
+
+
+//////        exit;
 
         return $this->render('index', [
 //            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+//            'id' => $id
         ]);
     }
 
@@ -86,6 +99,7 @@ class ProjectController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        var_dump($model);exit;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

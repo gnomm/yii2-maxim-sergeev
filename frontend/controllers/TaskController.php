@@ -33,6 +33,10 @@ class TaskController extends Controller
 {
     public function actionIndex()
     {
+        if (!Tasks::getTaskThisProject()) {
+            return $this->render('indexNotTasks', []);
+        }
+
         $month = date('n');
 //        $month = 11;
         $id = Yii::$app->user->id;
@@ -78,6 +82,7 @@ class TaskController extends Controller
     {
         $model = $this->findModel($id);
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -122,7 +127,8 @@ class TaskController extends Controller
             throw new ForbiddenHttpException('Access denied');
         }
 
-        echo 'test';exit;
+        echo 'test';
+        exit;
 
 //        if (!\Yii::$app->user->can('updateNews')) {
 //            throw new ForbiddenHttpException('Access denied');

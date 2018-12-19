@@ -51,9 +51,11 @@ class Project extends \yii\db\ActiveRecord
         return $this->hasMany(Tasks::className(), ['project_id' => 'id']);
     }
 
-    public static function getTask($id) {
+    public static function getTask($id)
+    {
         return static::find()
-        ->where(['id' => $id])
+            ->where(['id' => $id])
             ->all();
     }
+
 }

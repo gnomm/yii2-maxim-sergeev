@@ -19,9 +19,9 @@ use yii\db\Expression;
  * @property string $created_at
  * @property string $updated_at
  *
-// * @property Chat[] $chats
-// * @property User $initiator
-// * @property User $responsible
+ * // * @property Chat[] $chats
+ * // * @property User $initiator
+ * // * @property User $responsible
  * @property Users $user
  */
 class Tasks extends \yii\db\ActiveRecord
@@ -115,8 +115,7 @@ class Tasks extends \yii\db\ActiveRecord
     public static function getTaskCurrentMonth($month, $id)
     {
         return static::find()
-            ->where(["MONTH(date)" => $month, "responsible_id" => $id])
-            //            ->with('user')
+            ->where(["MONTH(date)" => $month, "responsible_id" => $id])//            ->with('user')
             ;
 
 //        $tasks = \Yii::$app->db->createCommand("
@@ -162,5 +161,13 @@ class Tasks extends \yii\db\ActiveRecord
                 ->save(\Yii::getAlias('@webroot/uploadImg/small/' . $basename));
         }
         return false;
+    }
+
+    public static function getTaskThisProject()
+    {
+        $projectId = Yii::$app->request->get('project_id');
+        return static::find()
+            ->where(['project_id' => $projectId])
+            ->all();
     }
 }
