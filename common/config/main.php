@@ -4,7 +4,7 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
     ],
-    'bootstrap' => ['CreateProjectEventComponent'],
+    'bootstrap' => ['CreateProjectEventComponent', 'CreateTaskEventComponent'],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'authManager' => [
@@ -15,10 +15,13 @@ return [
         ],
         'bot' => [
             'class' => \SonkoDmitry\Yii\TelegramBot\Component::class,
-            'apiToken' => '695443635:AAHNzyvIjIWSHKYp1HWwnh1XJISs6j7MPzk'
+            'apiToken' => ''
         ],
         'CreateProjectEventComponent' => [
-          'class' => \common\components\CreateProjectEventComponent::class
+            'class' => \common\components\CreateProjectEventComponent::class
+        ],
+        'CreateTaskEventComponent' => [
+            'class' => \common\components\CreateTaskEventComponent::class
         ],
 //        'user' => [
 //            'identityClass' => 'common\models\User',

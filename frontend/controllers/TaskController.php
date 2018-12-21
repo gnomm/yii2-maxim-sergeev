@@ -123,12 +123,21 @@ class TaskController extends Controller
 
     public function actionTest()
     {
-        if (!Yii::$app->user->can('updateProject')) {
-            throw new ForbiddenHttpException('Access denied');
-        }
+//        if (!Yii::$app->user->can('updateProject')) {
+//            throw new ForbiddenHttpException('Access denied');
+//        }
+//
+//        echo 'test';
+//        exit;
 
-        echo 'test';
-        exit;
+//        $task = new Tasks();
+//        $task->name = 'Test send';
+//        $task->description = 'new task';
+//        $task->date = '2018-12-22';
+//        $task->responsible_id = 1;
+//        $task->initiator_id = 1;
+//        $task->project_id = 1;
+//        $task->save();
 
 //        if (!\Yii::$app->user->can('updateNews')) {
 //            throw new ForbiddenHttpException('Access denied');
@@ -240,12 +249,7 @@ class TaskController extends Controller
 //        });
 
 
-//        $task = new Tasks();
-//        $task->name = 'Test send';
-//        $task->description = 'new task';
-//        $task->date = '2018-10-21';
-//        $task->responsible_id = 4;
-//        $task->save();
+
 
         //        $model = new Test;
 //        $model->attachBehavior('my', [

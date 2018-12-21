@@ -14,6 +14,7 @@ class CreateProjectEventComponent extends Component
         parent::init();
         Event::on(Project::class, Project::EVENT_AFTER_INSERT, function(Event $event){
             $model = $event->sender;
+//            echo 'test';
            TelegramSp::getSendSp();
         });
     }
